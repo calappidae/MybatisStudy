@@ -21,4 +21,7 @@
             </dataSource>
         </environment>
     </environments>
+    <mappers>
+        <package name="com.pan.mapper"/>
+    </mappers>
 </configuration>
