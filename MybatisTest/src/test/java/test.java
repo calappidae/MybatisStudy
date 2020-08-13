@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class test {
     private SqlSessionFactory sqlSessionFactory;
@@ -41,6 +43,53 @@ public class test {
 
         try {
             mapper.insertUserOne(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
+
+    @Test
+    public void updateUser(){
+        sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+
+        User user = new User();
+        user.setId(2);
+        user.setUsername("panjianhao");
+        user.setPassword("123456");
+        user.setSex("female");
+        user.setAddress("beijing");
+
+        try {
+            mapper.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
+
+    @Test
+    public void deleteUser(){
+        sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+
+        try {
+            mapper.deleteUser(4);
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
+
+    @Test
+    public void findUserAll(){
+        sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        List<User> userList = null;
+        try {
+            userList = mapper.findAll();
+            System.out.println(userList);
         } catch (Exception e) {
             e.printStackTrace();
             sqlSession.rollback();

@@ -17,4 +17,16 @@
         (#{username},#{password},#{sex},#{address})
     </insert>
 
+    <update id="updateUser" parameterType="user">
+        update user set username=#{username},password=#{password},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+
+    <select id="findAll" resultMap="userMap">
+        select * from user
+    </select>
+
 </mapper>
