@@ -95,4 +95,8 @@ public class test {
             sqlSession.rollback();
         }
     }
+    @Test
+    public void findUserAllTest(){
+       
+    }
 }
